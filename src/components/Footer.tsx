@@ -37,7 +37,7 @@ export default function Footer() {
         {/* Right: PIC logo */}
         <Image
           src="/images/pic-logo.jpeg"
-          alt="PIC"
+          alt="PIC Platform logo"
           width={80}
           height={36}
           className="h-9 w-auto select-none opacity-80 hover:opacity-100 transition-opacity duration-200"

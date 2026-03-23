@@ -69,7 +69,9 @@ export default function Solution() {
   const quickNumOpacity = useRef<Array<(v: number) => void>>([]);
 
   useGSAP(() => {
-    // ── Heading reveal (non-scrubbed) ───────────────────────────────────────
+    const isMobile = ScrollTrigger.isTouch === 1;
+
+    // ── Heading reveal ───────────────────────────────────────────────────────
     gsap.from(headingRef.current, {
       y: 24, opacity: 0, duration: 0.8, ease: "power3.out",
       scrollTrigger: {
@@ -79,27 +81,34 @@ export default function Solution() {
       },
     });
 
-    // ── Set initial state for all columns ───────────────────────────────────
-    gsap.set(scrollRefs.current, { y: 100, scale: 0.82, opacity: 0 });
+    if (isMobile) {
+      // ── Mobile: simple one-shot stagger (no scrub) ────────────────────────
+      gsap.set(scrollRefs.current, { y: 0, scale: 1, opacity: 1 });
+      gsap.from(scrollRefs.current, {
+        y: 40, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    } else {
+      // ── Desktop: scrubbed staggered timeline ──────────────────────────────
+      gsap.set(scrollRefs.current, { y: 100, scale: 0.82, opacity: 0 });
 
-    // ── Scrubbed staggered timeline - cols arrive one by one as you scroll ──
-    // Each column is a separate tween at a different timeline position.
-    // scrub:1 ties the timeline progress directly to scroll position.
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: gridRef.current,
-        start: "top 78%",
-        end: "+=520",
-        scrub: 1,
-      },
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: "top 78%",
+          end: "+=520",
+          scrub: 1,
+        },
+      });
 
-    // Col 01 arrives during scroll 0–40%
-    tl.to(scrollRefs.current[0], { y: 0, scale: 1, opacity: 1, ease: "power2.out", duration: 0.4 }, 0);
-    // Col 02 arrives during scroll 25–65%
-    tl.to(scrollRefs.current[1], { y: 0, scale: 1, opacity: 1, ease: "power2.out", duration: 0.4 }, 0.25);
-    // Col 03 arrives during scroll 50–90%
-    tl.to(scrollRefs.current[2], { y: 0, scale: 1, opacity: 1, ease: "power2.out", duration: 0.4 }, 0.5);
+      tl.to(scrollRefs.current[0], { y: 0, scale: 1, opacity: 1, ease: "power2.out", duration: 0.4 }, 0);
+      tl.to(scrollRefs.current[1], { y: 0, scale: 1, opacity: 1, ease: "power2.out", duration: 0.4 }, 0.25);
+      tl.to(scrollRefs.current[2], { y: 0, scale: 1, opacity: 1, ease: "power2.out", duration: 0.4 }, 0.5);
+    }
 
     // ── Number initial opacity (element opacity, not color alpha) ───────────
     gsap.set(numRefs.current, { opacity: 0.10 });

@@ -101,7 +101,7 @@ export default function Hero() {
         {/* Logo */}
         <Image
           src="/images/pic-logo.jpeg"
-          alt="PIC"
+          alt="PIC - Parties & Events Platform logo"
           width={220}
           height={96}
           style={{ borderRadius: "100%" }}
@@ -152,6 +152,7 @@ export default function Hero() {
           {/* Primary - Navy solid */}
           <a
             href="#lead-capture"
+            aria-label="Request early access to PIC platform"
             className="font-body font-bold text-base uppercase tracking-wider text-white bg-navy hover:bg-navy-hover active:bg-navy-active transition-colors duration-150 rounded-md min-w-[240px] h-[64px] flex items-center justify-center"
           >
             Contact Us
@@ -160,6 +161,7 @@ export default function Hero() {
           {/* Secondary - Outline */}
           <a
             href="#Situation"
+            aria-label="Explore the PIC event production platform"
             className="font-body font-bold text-base uppercase tracking-wider text-navy border-2 border-navy hover:bg-navy hover:text-white transition-all duration-200 rounded-md min-w-[240px] h-[64px] flex items-center justify-center"
           >
             Explore Platform

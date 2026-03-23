@@ -59,73 +59,45 @@ export default function Process() {
   const connectorRefs = useRef<(HTMLDivElement  | null)[]>([]);
 
   useGSAP(() => {
-    // ── Heading: scrubbed slide-up ──────────────────────────────────────────
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: headingRef.current,
-        start: "top 90%",
-        end: "top 50%",
-        scrub: 1,
-      },
-    }).from(headingRef.current, { y: 30, opacity: 0, ease: "power2.out" });
+    const isMobile = ScrollTrigger.isTouch === 1;
 
-    // ── Initial states ──────────────────────────────────────────────────────
-    // Circle 1: active from the start (user has already "arrived")
-    gsap.set(circleRefs.current[0], CIRCLE_ACTIVE);
-    gsap.set(numRefs.current[0],    { scale: 1.15, color: "#031760" });
-    gsap.set(textRefs.current[0],   { y: 0, opacity: 1 });
-
-    // Circles 2-4: idle
-    gsap.set(circleRefs.current.slice(1), CIRCLE_IDLE);
-    gsap.set(numRefs.current.slice(1),    { scale: 1.0, color: "rgba(3,23,96,0.45)" });
-    gsap.set(textRefs.current.slice(1),   { y: 20, opacity: 0 });
-
-    // All connectors: progress fill starts at scaleX: 0
-    gsap.set(connectorRefs.current, { scaleX: 0 });
-
-    // ── Master scrubbed timeline ────────────────────────────────────────────
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 55%",
-        end: "+=700",
-        scrub: 1,
-      },
+    // ── Heading ──────────────────────────────────────────────────────────────
+    gsap.from(headingRef.current, {
+      y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
+      scrollTrigger: { trigger: headingRef.current, start: "top 88%", toggleActions: "play none none none" },
     });
 
-    // For each of the 3 connectors: fill it, then activate the next circle
-    CONNECTOR_END_POS.forEach((endPos, ci) => {
-      const startPos = ci === 0 ? 0.02 : CONNECTOR_END_POS[ci - 1] + 0.02;
-      const nextCircle = ci + 1; // circle index to activate (1, 2, 3)
+    if (isMobile) {
+      // ── Mobile: show all steps fully active, animate in as one block ───────
+      gsap.set(circleRefs.current,  CIRCLE_ACTIVE);
+      gsap.set(numRefs.current,     { scale: 1.15, color: "#031760" });
+      gsap.set(textRefs.current,    { y: 0, opacity: 1 });
+      gsap.set(connectorRefs.current, { scaleX: 1 });
+    } else {
+      // ── Desktop: scrubbed timeline ─────────────────────────────────────────
+      gsap.set(circleRefs.current[0], CIRCLE_ACTIVE);
+      gsap.set(numRefs.current[0],    { scale: 1.15, color: "#031760" });
+      gsap.set(textRefs.current[0],   { y: 0, opacity: 1 });
 
-      // Connector fill: scaleX 0 → 1 between startPos and endPos
-      tl.to(
-        connectorRefs.current[ci],
-        { scaleX: 1, ease: "none", duration: endPos - startPos },
-        startPos,
-      );
+      gsap.set(circleRefs.current.slice(1), CIRCLE_IDLE);
+      gsap.set(numRefs.current.slice(1),    { scale: 1.0, color: "rgba(3,23,96,0.45)" });
+      gsap.set(textRefs.current.slice(1),   { y: 20, opacity: 0 });
+      gsap.set(connectorRefs.current,       { scaleX: 0 });
 
-      // Circle activation: snaps to active at endPos
-      tl.to(
-        circleRefs.current[nextCircle],
-        { ...CIRCLE_ACTIVE, duration: 0.06, ease: "none" },
-        endPos,
-      );
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: sectionRef.current, start: "top 55%", end: "+=700", scrub: 1 },
+      });
 
-      // Number: color darkens + slight scale-up
-      tl.to(
-        numRefs.current[nextCircle],
-        { scale: 1.15, color: "#031760", duration: 0.06, ease: "none" },
-        endPos,
-      );
+      CONNECTOR_END_POS.forEach((endPos, ci) => {
+        const startPos   = ci === 0 ? 0.02 : CONNECTOR_END_POS[ci - 1] + 0.02;
+        const nextCircle = ci + 1;
 
-      // Text: slide up and fade in
-      tl.to(
-        textRefs.current[nextCircle],
-        { y: 0, opacity: 1, duration: 0.15, ease: "power2.out" },
-        endPos,
-      );
-    });
+        tl.to(connectorRefs.current[ci],      { scaleX: 1, ease: "none", duration: endPos - startPos }, startPos);
+        tl.to(circleRefs.current[nextCircle], { ...CIRCLE_ACTIVE, duration: 0.06, ease: "none" }, endPos);
+        tl.to(numRefs.current[nextCircle],    { scale: 1.15, color: "#031760", duration: 0.06, ease: "none" }, endPos);
+        tl.to(textRefs.current[nextCircle],   { y: 0, opacity: 1, duration: 0.15, ease: "power2.out" }, endPos);
+      });
+    }
   }, { scope: sectionRef });
 
   return (

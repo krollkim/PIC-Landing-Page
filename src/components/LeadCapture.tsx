@@ -124,11 +124,13 @@ export default function LeadCapture() {
           >
 
             {/* Role selector */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3" role="group" aria-label="Select your role">
               {USER_TYPES.map(({ id, label }) => (
                 <button
                   key={id}
                   type="button"
+                  aria-pressed={selected === id}
+                  aria-label={`I am a ${label}`}
                   onClick={() => setSelected(id as UserType)}
                   className="font-body text-sm font-semibold uppercase tracking-wider rounded-lg px-5 py-3 min-w-[148px] transition-all duration-200"
                   style={
@@ -155,9 +157,12 @@ export default function LeadCapture() {
               <input
                 type="email"
                 required
+                id="early-access-email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
+                aria-label="Your email address"
+                aria-describedby="early-access-hint"
                 className="flex-1 font-body text-[0.95rem] rounded-lg px-5 h-[56px] outline-none"
                 style={{
                   border: "1px solid rgba(3,23,96,0.20)",
@@ -168,6 +173,7 @@ export default function LeadCapture() {
               <button
                 type="submit"
                 disabled={loading}
+                aria-label={loading ? "Submitting your early access request" : "Join the early access list"}
                 className="font-body font-bold text-sm uppercase tracking-wider text-white rounded-lg px-7 h-[56px] flex-shrink-0 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{ backgroundColor: "#031760" }}
                 onMouseEnter={(e) => {
@@ -190,7 +196,7 @@ export default function LeadCapture() {
               </p>
             )}
 
-            <p className="font-body text-[0.75rem]" style={{ color: "rgba(3,23,96,0.40)" }}>
+            <p id="early-access-hint" className="font-body text-[0.75rem]" style={{ color: "rgba(3,23,96,0.40)" }}>
               No spam. No commitments. Just early access.
             </p>
 

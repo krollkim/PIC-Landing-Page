@@ -31,3 +31,57 @@ body {
 @media (min-width: 1024px) {
   .text-outline-navy { -webkit-text-stroke-width: 3px; }
 }
+
+/* ─── Accessibility Modes ─────────────────────────────────────────────────────
+   Classes are toggled on <html> by AccessibilityWidget.tsx.
+
+   HIGH CONTRAST: does NOT use filter — filter clips GSAP-animated opacity values
+   (e.g. the ghost numbers in Solution start at opacity:0.10 via gsap.set, and
+   contrast(1.6) makes them vanish). Since the site is already very high-contrast
+   (navy #031760 on white), the mode instead enhances readability via underlines,
+   bolder text, and visible outlines on interactive elements.
+
+   GRAYSCALE: filter scoped to main+footer only, never body/html, so that
+   fixed-position elements (Navbar, AccessibilityWidget) stay unaffected and
+   GSAP ScrollTrigger (which uses position:fixed internally when pinning) stays intact.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Large Text: bump root font size ~12.5% (16px → 18px equivalent) */
+html.a11y-large-text {
+  font-size: 112.5%;
+}
+
+/* High Contrast: readability enhancements — NO filter (would clip GSAP opacity) */
+html.a11y-high-contrast main a,
+html.a11y-high-contrast footer a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+html.a11y-high-contrast main button,
+html.a11y-high-contrast main a {
+  outline-offset: 3px;
+}
+
+html.a11y-high-contrast main button:focus-visible,
+html.a11y-high-contrast main a:focus-visible {
+  outline: 3px solid #031760 !important;
+}
+
+html.a11y-high-contrast main p,
+html.a11y-high-contrast main li {
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+}
+
+/* Grayscale: drain color from page content only */
+html.a11y-grayscale main,
+html.a11y-grayscale footer {
+  filter: grayscale(1);
+}
+
+/* Both active simultaneously — single filter declaration, no conflict */
+html.a11y-high-contrast.a11y-grayscale main,
+html.a11y-high-contrast.a11y-grayscale footer {
+  filter: grayscale(1);
+}

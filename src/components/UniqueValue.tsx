@@ -47,55 +47,45 @@ export default function UniqueValue() {
   const pulseTl = useRef<gsap.core.Timeline | null>(null);
 
   useGSAP(() => {
-    // ── Heading: scrubbed slide-in from left ────────────────────────────────
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: headingRef.current,
-        start: "top 90%",
-        end: "top 45%",
-        scrub: 1,
-      },
-    }).from(headingRef.current, { x: -40, opacity: 0, ease: "power2.out" });
-
-    // ── List: scrubbed staggered slide-in (x: -40 → 0), one tween per item ─
+    const isMobile = ScrollTrigger.isTouch === 1;
     const items = Array.from(listRef.current?.querySelectorAll("li") ?? []);
-    if (items.length) {
-      const listTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: listRef.current,
-          start: "top 88%",
-          end: "bottom 55%",
-          scrub: 1,
-        },
+
+    if (isMobile) {
+      // ── Mobile: simple one-shot animations (no scrub, no parallax) ─────────
+      gsap.from(headingRef.current, {
+        y: 24, opacity: 0, duration: 0.8, ease: "power3.out",
+        scrollTrigger: { trigger: headingRef.current, start: "top 88%", toggleActions: "play none none none" },
       });
-      // Each item placed at a different offset so they arrive sequentially
-      items.forEach((item, i) => {
-        listTl.from(
-          item,
-          { x: -40, opacity: 0, ease: "power2.out", duration: 0.4 },
-          i * 0.28,
-        );
-      });
+      if (items.length) {
+        gsap.from(items, {
+          x: -24, opacity: 0, duration: 0.5, stagger: 0.1, ease: "power2.out",
+          scrollTrigger: { trigger: listRef.current, start: "top 88%", toggleActions: "play none none none" },
+        });
+      }
+    } else {
+      // ── Desktop: scrubbed slide-in ─────────────────────────────────────────
+      gsap.timeline({
+        scrollTrigger: { trigger: headingRef.current, start: "top 90%", end: "top 45%", scrub: 1 },
+      }).from(headingRef.current, { x: -40, opacity: 0, ease: "power2.out" });
+
+      if (items.length) {
+        const listTl = gsap.timeline({
+          scrollTrigger: { trigger: listRef.current, start: "top 88%", end: "bottom 55%", scrub: 1 },
+        });
+        items.forEach((item, i) => {
+          listTl.from(item, { x: -40, opacity: 0, ease: "power2.out", duration: 0.4 }, i * 0.28);
+        });
+      }
+
+      // 3IN1 parallax (desktop only)
+      gsap.fromTo(
+        graphicRef.current,
+        { y: 80 },
+        { y: -120, ease: "none", scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1 } },
+      );
     }
 
-    // ── 3IN1 graphic: wide parallax range ─ starts low, exits high ──────────
-    // graphicRef owns y exclusively; nothing else animates y on this element
-    gsap.fromTo(
-      graphicRef.current,
-      { y: 80 },
-      {
-        y: -120,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",    // section top hits viewport bottom
-          end: "bottom top",      // section bottom hits viewport top
-          scrub: 1,
-        },
-      },
-    );
-
-    // ── Infinite breathing pulse on glowRef (filter only, no y) ─────────────
+    // ── Infinite breathing pulse — both platforms ───────────────────────────
     gsap.set(glowRef.current, { filter: FILTER_IDLE });
     pulseTl.current = gsap.timeline({ repeat: -1, yoyo: true }).to(
       glowRef.current,
