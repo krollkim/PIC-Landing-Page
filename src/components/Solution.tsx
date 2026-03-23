@@ -113,6 +113,9 @@ export default function Solution() {
     // ── Number initial opacity (element opacity, not color alpha) ───────────
     gsap.set(numRefs.current, { opacity: 0.10 });
 
+    // Give GSAP ownership of scale on icon elements so quickTo can reset it
+    gsap.set(iconRefs.current, { scale: 1 });
+
     // ── QuickTo functions (operate on inner hover divs - no conflict) ───────
     hoverRefs.current.forEach((card, i) => {
       if (!card) return;

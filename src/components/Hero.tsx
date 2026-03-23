@@ -104,9 +104,9 @@ export default function Hero() {
           alt="PIC - Parties & Events Platform logo"
           width={220}
           height={96}
-          style={{ borderRadius: "100%" }}
+          style={{ borderRadius: "100%", height: "auto" }}
           priority
-          className="w-[100px] md:w-[130px] h-auto select-none"
+          className="w-[100px] md:w-[130px] select-none"
           draggable={false}
         />
 
