@@ -1,0 +1,9 @@
+.next/
+node_modules/
+.env*
+out/
+dist/
+*.tsbuildinfo
+.DS_Store
+public/fonts/
+.claude/
