@@ -103,7 +103,7 @@ export default function UniqueValue() {
       filter: FILTER_IDLE,
       duration: 0.6,
       ease: "power2.out",
-      onComplete: () => pulseTl.current?.restart(),
+      onComplete: () => { pulseTl.current?.restart(); },
     });
   };
 
