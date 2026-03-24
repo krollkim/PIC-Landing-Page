@@ -13,26 +13,26 @@ const COLUMNS = [
     num: "01",
     icon: Headset,
     role: "Producers",
-    quote: '"I was wasting hours on phone calls, WhatsApps, and chaotic timelines. Now I actually focus on the event itself."',
+    quote: '"I used to waste days on endless calls and WhatsApp chaos. Now, everything is in one place."',
     bullets: [
-      "Event creation in minutes",
-      "Vetted supplier database",
-      "Real-time budget tracking",
-      "Centralised team communication",
-      "Contract & invoice management",
+      "Plan in Minutes: Go from an idea to a live event with a few clicks.",
+      "Verified vendors: Instant access to a network of vendors you can trust.",
+      "Total Control: Track your tasks, schedule, and budget on one dashboard.",
+      "Stop the Mess: No more lost messages, all communication is organized.",
+      "Easy Payments: Manage and pay vendors securely.",
     ],
   },
   {
     num: "02",
     icon: Store,
     role: "Vendors",
-    quote: '"I\'m in the top 5 in my field, but if they don\'t know I exist, it doesn\'t matter. Now my next client is a click away."',
+    quote: '"I\'m a pro at what I do, but if clients can\'t find me, it doesn\'t matter. With PIC, my next job is one click away."',
     bullets: [
-      "Professional portfolio with gallery",
-      "Smart, targeted lead matching",
-      "Instant scheduling & bookings",
-      "Verified reviews & ratings",
-      "Direct producer messaging",
+      "Strong Business Profile: A professional gallery to show off your best work.",
+      "Smart Leads: Get matched with clients who fit your style and budget.",
+      "Instant Booking: Manage your calendar and get hired on the spot.",
+      "Build Your Name: Verified reviews and ratings that build real trust.",
+      "Direct Access: Chat directly with clients without the 'middleman.'",
     ],
   },
   {
@@ -178,10 +178,10 @@ export default function Solution() {
             style={{ color: "#031760" }}
           >
             One Platform.{" "}
-            <span style={{ color: "#33AFFF" }}>Every Connection.</span>
+            <span style={{ color: "#33AFFF" }}>All Sides.</span>
           </h2>
           <p className="font-body text-gray-500 text-lg leading-relaxed" style={{ maxWidth: "560px" }}>
-            Whether you produce events, supply services, or live for the night - PIC was built for you.
+            FOR EVERY TYPE OF EVENT - Where producers, vendors, and attendees come together.
           </p>
         </div>
 

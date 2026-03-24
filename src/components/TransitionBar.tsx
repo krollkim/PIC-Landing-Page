@@ -57,13 +57,11 @@ export default function TransitionBar() {
         >
           {/* Story text - White with subtle shadow for legibility */}
           <span style={{ color: "#FFFFFF", textShadow: "0 1px 2px rgba(0,0,0,0.10)" }}>
-            Producers run productions from WhatsApp.{" "}
-            Vendors live by word of mouth.{" "}
-            Partiers scroll through scattered posts.{" "}
+            Planning an event today is complicated, time consuming, and spread across too many platforms,{" "}
           </span>
           {/* Punchline - Deep Navy, black-weight for maximum punch */}
           <span style={{ color: "#031760", fontWeight: 900 }}>
-            It&apos;s time to change that.
+            Now it&apos;s simple.
           </span>
         </p>
 

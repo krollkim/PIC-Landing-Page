@@ -11,23 +11,18 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const FEATURES = [
   {
     icon: Network,
-    title: "Smart Connection Algorithm",
-    body: "The system matches producers and suppliers by location, date, budget, and style. No more blind searching.",
+    title: "Smart Sourcing",
+    body: "Stop searching for hours. We instantly match producers with the best verified vandors based on budget and style.",
   },
   {
     icon: BookImage,
-    title: "Digital Ticket Album",
-    body: "Every event you've attended is saved with you — a personal nightlife identity you won't find anywhere else.",
+    title: "Total Management",
+    body: "Manage everything in one place. From tasks and team chats to secure payments - all in one dashboard.",
   },
   {
     icon: BarChart3,
-    title: "Tiered Ticket Pricing",
-    body: "Producers control Early Bird, mid, and final prices — with real-time statistics at every stage.",
-  },
-  {
-    icon: MonitorSmartphone,
-    title: "Web + App",
-    body: "Full experience on desktop and mobile — because the entertainment world doesn't stop for a desk.",
+    title: "Easy Ticketing",
+    body: "Sell more, stress less. Create ticket tiers in seconds, track sales in real time, and give guests a smooth checkout.",
   },
 ] as const;
 

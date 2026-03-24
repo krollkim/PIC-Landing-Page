@@ -11,22 +11,22 @@ const STEPS = [
   {
     num: "01",
     title: "Register",
-    body: "Define a profile based on your role - Producer, Supplier, or Party-goer. Your experience starts here.",
+    body: "Create your profile: Sign up as a Producer or Vendor and join the professional network in minutes.",
   },
   {
     num: "02",
     title: "Set Up",
-    body: "Producers build events. Suppliers upload their portfolio. Party-goers define their tastes and city.",
+    body: "Build your base: Set up your personalized event dashboard or upload your business portfolio to start showcasing your work.",
   },
   {
     num: "03",
     title: "Connect",
-    body: "The algorithm connects the right parties - at exactly the right time, with zero guesswork.",
+    body: "Find exactly what you need: browse a verified network of vendors. Choose the best professionals tailored specifically to your event\'s needs, budget, and style.",
   },
   {
     num: "04",
-    title: "Produce",
-    body: "The event happens. Everything managed, documented, and precise - from A to Z.",
+    title: "LAUNCH",
+    body: "Success for everyone: The event comes to life. Producers enjoy a fully managed, professional production, while Vendors get hired and paid securely. Everything is documented and seamless from start to finish.",
   },
 ] as const;
 
@@ -209,7 +209,14 @@ export default function Process() {
                     className="font-body text-[0.88rem] leading-relaxed"
                     style={{ color: "rgba(3,23,96,0.55)" }}
                   >
-                    {body}
+                    {body.includes(":") ? (
+                      <>
+                        <strong style={{ color: "#031760", fontWeight: 700 }}>
+                          {body.split(":")[0]}:
+                        </strong>
+                        {body.split(":").slice(1).join(":")}
+                      </>
+                    ) : body}
                   </p>
                 </div>
 

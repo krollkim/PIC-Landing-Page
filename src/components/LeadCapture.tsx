@@ -99,7 +99,7 @@ export default function LeadCapture() {
             className="font-body text-[1rem] leading-relaxed"
             style={{ color: "rgba(3,23,96,0.65)", maxWidth: "480px" }}
           >
-            The platform is on its way. Leave your email and be among the first to access - producers, suppliers, and party-goers alike.
+            The platform is live. Join the PIC community today and be among our first users.
           </p>
         </div>
 

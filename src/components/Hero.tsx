@@ -114,7 +114,7 @@ export default function Hero() {
         <div className="flex items-center gap-3">
           <span className="block w-8 h-px bg-sky-400" />
           <span className="font-body text-[0.65rem] font-semibold text-sky-500 uppercase tracking-[0.28em]">
-            The Smart Platform for Event Production
+            Plan, book, and manage your events - all in one place.
           </span>
           <span className="block w-8 h-px bg-sky-400" />
         </div>
@@ -124,30 +124,28 @@ export default function Hero() {
 
           {/* Line 1 - solid navy */}
           <span className="font-display font-bold text-navy uppercase tracking-tighter leading-[0.88] text-[4.5rem] md:text-[7.5rem] lg:text-[10rem]">
-            Event
+            Create
           </span>
 
           {/* Line 2 - outline (stroke only, no fill) */}
           <span className="font-display font-bold uppercase tracking-tighter leading-[0.88] text-[4.5rem] md:text-[7.5rem] lg:text-[10rem] text-outline-navy">
-            Production
+            Events
           </span>
 
           {/* Line 3 - solid navy */}
           <span className="font-display font-bold text-navy uppercase tracking-tighter leading-[0.88] text-[4.5rem] md:text-[7.5rem] lg:text-[10rem]">
-            Elevated.
+            Easily.
           </span>
 
         </h1>
 
         {/* Description */}
         <p className="font-body text-gray-500 text-lg leading-relaxed mt-6" style={{ maxWidth: "600px" }}>
-          PIC connects producers with every supplier they need -
-          sound, lighting, catering, security, and more.
-          One platform. Every connection.
+          Find and book vendors for your event, And start selling tickets - in just a few clicks.
         </p>
 
         {/* CTA pair */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-2 pb-16">
 
           {/* Primary - Navy solid */}
           <a
