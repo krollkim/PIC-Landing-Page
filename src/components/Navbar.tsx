@@ -12,7 +12,7 @@ export default function Navbar() {
         </a>
 
         <span aria-label="PIC - Parties & Events Platform" className="font-display font-bold text-navy uppercase tracking-[0.2em] text-xl select-none">
-          PIC
+          PIC EVENTS
         </span>
 
       </div>
