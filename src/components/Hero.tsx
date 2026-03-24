@@ -158,7 +158,9 @@ export default function Hero() {
 
           {/* Secondary - Outline */}
           <a
-            href="#Situation"
+            href="https://pic-events.co.il/"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="Explore the PIC event production platform"
             className="font-body font-bold text-base uppercase tracking-wider text-navy border-2 border-navy hover:bg-navy hover:text-white transition-all duration-200 rounded-md min-w-[240px] h-[64px] flex items-center justify-center"
           >
