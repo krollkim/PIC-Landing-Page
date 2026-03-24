@@ -117,7 +117,7 @@ Documented in `tailwind.config.ts` for Lead Architect reference.
 
 **Typography:**
 - Uses `H1` from Typography primitive → `text-[5rem] md:text-[8rem] tracking-tighter leading-none`
-- Eyebrow above H1 → category signal ("The Smart Platform for Event Production")
+- Eyebrow above H1 → category signal ("The Operating System for Events")
 - Body sub-text → `text-lg max-w-xl leading-relaxed`
 - H1 copy: "Event Production, Elevated." — one statement, `<br />` between clauses
   only for visual balance (not forced at mobile)

@@ -1,4 +1,4 @@
-# PIC — The Smart Platform for Event Production
+# PIC - The Operating System for Events
 
 > One platform connecting event producers, service vendors, and party-goers.
 

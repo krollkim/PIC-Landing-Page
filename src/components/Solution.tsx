@@ -38,14 +38,13 @@ const COLUMNS = [
   {
     num: "03",
     icon: Ticket,
-    role: "Party People",
-    quote: '"I always hear about the best party after it\'s already over. PIC keeps me in the loop before it starts."',
+    role: "Attendees",
+    quote: '"Never miss out on the events that matter."',
     bullets: [
-      "Personalised event feed",
-      "Secured ticket purchases",
-      "RSVP & guest tracking",
-      "Digital party album",
-      "Exclusive early-access drops",
+      "Discover events that match your interests",
+      "Buy tickets quickly and securely",
+      "Stay updated on upcoming events",
+      "Get access to exclusive drops and releases",
     ],
   },
 ] as const;

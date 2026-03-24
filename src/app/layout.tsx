@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "PIC - The Smart Platform for Event Production",
+  title: "PIC - The Operating System for Events",
   description:
     "PIC connects event producers, service vendors, and party-goers on one platform. Book sound, lighting, catering, security, and more - all in one place. Join the early-access list.",
   keywords: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "PIC platform",
   ],
   openGraph: {
-    title: "PIC - The Smart Platform for Event Production",
+    title: "PIC - The Operating System for Events",
     description:
       "One platform connecting event producers, service vendors, and party-goers. Book every supplier you need - sound, lighting, catering, security, and more.",
     type: "website",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PIC - The Smart Platform for Event Production",
+    title: "PIC - The Operating System for Events",
     description:
       "One platform connecting event producers, service vendors, and party-goers. Join the early-access list.",
   },
