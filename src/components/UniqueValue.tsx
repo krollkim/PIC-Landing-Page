@@ -12,7 +12,7 @@ const FEATURES = [
   {
     icon: Network,
     title: "Smart Sourcing",
-    body: "Stop searching for hours. We instantly match producers with the best verified vandors based on budget and style.",
+    body: "Stop searching for hours. We instantly match producers with the best verified vendors based on budget and style.",
   },
   {
     icon: BookImage,
