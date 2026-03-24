@@ -141,7 +141,7 @@ export default function Hero() {
 
         {/* Description */}
         <p className="font-body text-gray-500 text-lg leading-relaxed mt-6" style={{ maxWidth: "600px" }}>
-          Find and book vendors for your event, And start selling tickets - in just a few clicks.
+          Find and book vendors, publish your event, and start selling tickets - in just a few clicks.
         </p>
 
         {/* CTA pair */}
