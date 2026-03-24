@@ -6,12 +6,12 @@ export default function Navbar() {
         <a
           href="#lead-capture"
           aria-label="Get early access to PIC platform"
-          className="font-body font-bold text-sm uppercase tracking-widest text-white bg-navy hover:bg-navy-hover active:bg-navy-active transition-colors duration-150 rounded-md min-w-[180px] h-[40px] flex items-center justify-center"
+          className="font-body font-bold text-xs sm:text-sm uppercase tracking-widest text-white bg-navy hover:bg-navy-hover active:bg-navy-active transition-colors duration-150 rounded-md min-w-[140px] sm:min-w-[180px] h-[36px] sm:h-[40px] flex items-center justify-center"
         >
           Contact Us
         </a>
 
-        <span aria-label="PIC - Parties & Events Platform" className="font-display font-bold text-navy uppercase tracking-[0.2em] text-xl select-none">
+        <span aria-label="PIC - Parties & Events Platform" className="font-display font-bold text-navy uppercase tracking-[0.2em] text-sm sm:text-xl select-none whitespace-nowrap">
           PIC EVENTS
         </span>
 

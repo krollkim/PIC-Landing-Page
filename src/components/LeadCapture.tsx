@@ -7,12 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type UserType = "producer" | "vendor" | "party" | null;
+type UserType = "producer" | "vendor" | null;
 
 const USER_TYPES: { id: UserType & string; label: string }[] = [
   { id: "producer", label: "Event Producer" },
   { id: "vendor",   label: "Service Provider" },
-  { id: "party",    label: "Party-goer" },
 ];
 
 export default function LeadCapture() {
