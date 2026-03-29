@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Accessibility, X, ZoomIn, Contrast, Glasses, ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Prefs = {
@@ -20,8 +21,6 @@ const defaultPrefs: Prefs = {
 };
 
 // ─── Apply prefs to <html> via CSS classes ────────────────────────────────────
-// Note: classes are applied to <html> so CSS rules can target main/footer
-// without touching fixed-position elements (Navbar, this widget).
 function applyPrefs(p: Prefs) {
   const cl = document.documentElement.classList;
   cl.toggle('a11y-large-text',    p.largeText);
@@ -72,7 +71,7 @@ function ToggleRow({
         </span>
       </div>
 
-      {/* Toggle pill — dir="ltr" so left/right is always LTR */}
+      {/* Toggle pill - dir="ltr" so left/right is always LTR regardless of page dir */}
       <div
         dir="ltr"
         aria-hidden="true"
@@ -90,6 +89,9 @@ function ToggleRow({
 
 // ─── Main Widget ──────────────────────────────────────────────────────────────
 export default function AccessibilityWidget() {
+  const { t } = useLanguage();
+  const w = t.accessibility.widget;
+
   const [open,    setOpen]    = useState(false);
   const [mounted, setMounted] = useState(false);
   const [prefs,   setPrefs]   = useState<Prefs>(defaultPrefs);
@@ -108,7 +110,7 @@ export default function AccessibilityWidget() {
         applyPrefs(parsed);
       }
     } catch {
-      // localStorage unavailable — silently skip
+      // localStorage unavailable - silently skip
     }
   }, []);
 
@@ -159,7 +161,7 @@ export default function AccessibilityWidget() {
       <button
         ref={triggerRef}
         onClick={() => setOpen((o) => !o)}
-        aria-label={open ? 'Close accessibility menu' : 'Open accessibility menu'}
+        aria-label={open ? w.closeMenu : w.openMenu}
         aria-expanded={open}
         aria-controls="a11y-panel"
         className="fixed right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#33AFFF]"
@@ -168,8 +170,6 @@ export default function AccessibilityWidget() {
           backgroundColor: open ? '#021245' : '#031760',
           border: '2px solid #33AFFF',
           boxShadow: '0 4px 20px rgba(3,23,96,0.35)',
-          // Forces GPU compositing — fixes iOS Safari bug where fixed elements
-          // vanish during scroll when the page has GSAP transforms
           WebkitTransform: 'translateZ(0)',
           transform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
@@ -187,7 +187,7 @@ export default function AccessibilityWidget() {
           ref={panelRef}
           id="a11y-panel"
           role="region"
-          aria-label="Accessibility options"
+          aria-label={w.header}
           className="fixed right-6 z-[9999] w-72 rounded-2xl overflow-hidden"
           style={{
             bottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))',
@@ -202,27 +202,27 @@ export default function AccessibilityWidget() {
           <div className="flex items-center gap-3 px-5 py-4" style={{ backgroundColor: '#031760' }}>
             <Accessibility size={16} strokeWidth={1.5} className="text-white/80 flex-shrink-0" aria-hidden="true" />
             <span className="font-body text-sm font-medium text-white tracking-wide">
-              Accessibility Options
+              {w.header}
             </span>
           </div>
 
           {/* Toggle rows */}
           <div className="p-3 flex flex-col gap-1">
             <ToggleRow
-              icon={<ZoomIn    size={17} strokeWidth={1.5} />}
-              label="Large Text"
+              icon={<ZoomIn   size={17} strokeWidth={1.5} />}
+              label={w.largeText}
               active={prefs.largeText}
               onToggle={() => toggle('largeText')}
             />
             <ToggleRow
-              icon={<Contrast  size={17} strokeWidth={1.5} />}
-              label="High Contrast"
+              icon={<Contrast size={17} strokeWidth={1.5} />}
+              label={w.highContrast}
               active={prefs.highContrast}
               onToggle={() => toggle('highContrast')}
             />
             <ToggleRow
-              icon={<Glasses   size={17} strokeWidth={1.5} />}
-              label="Grayscale"
+              icon={<Glasses  size={17} strokeWidth={1.5} />}
+              label={w.grayscale}
               active={prefs.grayscale}
               onToggle={() => toggle('grayscale')}
             />
@@ -243,7 +243,7 @@ export default function AccessibilityWidget() {
                 (e.currentTarget as HTMLAnchorElement).style.color = '#6b7280';
               }}
             >
-              <span>Accessibility Statement</span>
+              <span>{w.statementLink}</span>
               <ExternalLink size={13} strokeWidth={1.5} aria-hidden="true" />
             </a>
           </div>

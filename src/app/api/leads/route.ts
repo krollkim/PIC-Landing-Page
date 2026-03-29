@@ -22,8 +22,8 @@ export async function POST(req: NextRequest) {
 
     // ── SMTP transport ────────────────────────────────────────────────────────
     // Requires two environment variables in .env.local:
-    //   SMTP_USER  — the Gmail address used to send (e.g. yourapp@gmail.com)
-    //   SMTP_PASS  — a Gmail App Password (not your regular password)
+    //   SMTP_USER  - the Gmail address used to send (e.g. yourapp@gmail.com)
+    //   SMTP_PASS  - a Gmail App Password (not your regular password)
     //                Generate at: myaccount.google.com → Security → App Passwords
     const transporter = nodemailer.createTransport({
       service: "gmail",
