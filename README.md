@@ -6,7 +6,7 @@
 
 ## Overview
 
-PIC is a high-end marketing landing page built to capture early-access leads for a B2C/B2B event production platform. The page presents PIC's value proposition across three user personas — **Producers**, **Vendors**, and **Party People** — and collects sign-ups via an email form that delivers leads directly to the team inbox.
+PIC is a high-end marketing landing page built to capture early-access leads for a B2C/B2B event production platform. The page presents PIC's value proposition across three user personas - **Producers**, **Vendors**, and **Party People** - and collects sign-ups via an email form that delivers leads directly to the team inbox.
 
 ---
 
@@ -37,7 +37,7 @@ src/
 │   └── page.tsx                # Page composition
 │
 ├── components/
-│   ├── Navbar.tsx              # Fixed sticky nav — CTA left, PIC mark right
+│   ├── Navbar.tsx              # Fixed sticky nav - CTA left, PIC mark right
 │   ├── Hero.tsx                # Full-screen hero, GSAP mouse-follow glow
 │   ├── TransitionBar.tsx       # Editorial statement bar
 │   ├── Solution.tsx            # 3-column who-it's-for with scrubbed reveal
@@ -56,12 +56,12 @@ src/
 
 | # | Component | Description |
 |---|---|---|
-| 1 | `Navbar` | Fixed bar — "Contact Us" CTA (left) · PIC logo mark (right) |
+| 1 | `Navbar` | Fixed bar - "Contact Us" CTA (left) · PIC logo mark (right) |
 | 2 | `Hero` | 3-tier stacked headline (EVENT / PRODUCTION / ELEVATED), layered cyan GSAP glow that follows the mouse with parallax + brightness shift on movement |
 | 3 | `TransitionBar` | Blue bar with editorial problem statement |
 | 4 | `Solution` | Three columns (Producers / Vendors / Party People) with quotes, bullet lists, and scrubbed scroll stagger |
-| 5 | `UniqueValue` | Dark navy section — feature list (left) + giant "3IN1" outline graphic (right) with parallax + infinite breathing pulse |
-| 6 | `Process` | Horizontal timeline — sky-blue progress line fills between circles (01 → 04) as the user scrolls, each step activating with a glow |
+| 5 | `UniqueValue` | Dark navy section - feature list (left) + giant "3IN1" outline graphic (right) with parallax + infinite breathing pulse |
+| 6 | `Process` | Horizontal timeline - sky-blue progress line fills between circles (01 → 04) as the user scrolls, each step activating with a glow |
 | 7 | `LeadCapture` | Role-selector buttons + email input, POSTs to `/api/leads` on submit |
 | 8 | `Footer` | Navy footer with copyright and studio credit |
 
@@ -102,7 +102,7 @@ Sky blue accent `#0EA5E9` / `#33AFFF` is used inline for glows, icons, and activ
 
 1. Enable **2-Step Verification** on a Google account
 2. Go to [myaccount.google.com](https://myaccount.google.com) → Security → **App Passwords**
-3. Create an App Password ("Mail" · "Other device") — copy the 16-char code
+3. Create an App Password ("Mail" · "Other device") - copy the 16-char code
 4. Create `.env.local` in the project root:
 
 ```env
@@ -137,8 +137,8 @@ npm start
 
 | Section | Technique |
 |---|---|
-| Hero glow | `gsap.to` with `xPercent` / `yPercent` + `filter: brightness()` on `mousemove` — afterglow on mouse stop |
-| Solution cards | Scrubbed timeline — `y: 100, scale: 0.82 → 0` triggered sequentially as scroll advances |
+| Hero glow | `gsap.to` with `xPercent` / `yPercent` + `filter: brightness()` on `mousemove` - afterglow on mouse stop |
+| Solution cards | Scrubbed timeline - `y: 100, scale: 0.82 → 0` triggered sequentially as scroll advances |
 | UniqueValue list | Scrubbed stagger `x: -30 → 0` per item |
 | UniqueValue 3IN1 | Parallax `y: 80 → -120` over full section viewport pass + infinite `filter: drop-shadow` pulse |
 | Process line | `scaleX: 0 → 1` per connector div, tied to scroll scrub; each circle activates with border glow + number scale |

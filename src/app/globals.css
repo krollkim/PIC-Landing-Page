@@ -35,7 +35,7 @@ body {
 /* ─── Accessibility Modes ─────────────────────────────────────────────────────
    Classes are toggled on <html> by AccessibilityWidget.tsx.
 
-   HIGH CONTRAST: does NOT use filter — filter clips GSAP-animated opacity values
+   HIGH CONTRAST: does NOT use filter - filter clips GSAP-animated opacity values
    (e.g. the ghost numbers in Solution start at opacity:0.10 via gsap.set, and
    contrast(1.6) makes them vanish). Since the site is already very high-contrast
    (navy #031760 on white), the mode instead enhances readability via underlines,
@@ -51,7 +51,7 @@ html.a11y-large-text {
   font-size: 112.5%;
 }
 
-/* High Contrast: readability enhancements — NO filter (would clip GSAP opacity) */
+/* High Contrast: readability enhancements - NO filter (would clip GSAP opacity) */
 html.a11y-high-contrast main a,
 html.a11y-high-contrast footer a {
   text-decoration: underline !important;
@@ -80,8 +80,92 @@ html.a11y-grayscale footer {
   filter: grayscale(1);
 }
 
-/* Both active simultaneously — single filter declaration, no conflict */
+/* Both active simultaneously - single filter declaration, no conflict */
 html.a11y-high-contrast.a11y-grayscale main,
 html.a11y-high-contrast.a11y-grayscale footer {
   filter: grayscale(1);
+}
+
+/* ─── Hebrew (RTL) Typography Overrides ──────────────────────────────────────
+   Problem: Latin display fonts use tracking-tighter (-0.05em) and leading-[0.88]
+   for a bold, compressed all-caps aesthetic. Hebrew letterforms are naturally
+   more compact horizontally and have no true uppercase - applying the same values
+   makes Hebrew headlines look mechanically squeezed and unreadable.
+
+   Solution: Scope relaxed values to [dir="rtl"] so they activate automatically
+   when the language context flips the document direction. No component changes.
+
+   Eyebrow labels: EN uses tracking-[0.28em] for a luxe small-caps feel.
+   Hebrew with that much spacing looks like Morse code - reduced to 0.08em.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Display font: relax the aggressive tracking and open up line-height */
+[dir="rtl"] .font-display {
+  letter-spacing: -0.01em; /* EN baseline: tracking-tighter = -0.05em            */
+  line-height:    1.08;    /* EN baseline: leading-[0.88] - too tight for Hebrew  */
+}
+
+/* Hero h1 3-line stack: lines should "kiss" at large sizes just like EN.
+   0.95 matches the compressed editorial density of leading-[0.88] visually. */
+[dir="rtl"] h1 span {
+  line-height: 0.95;
+}
+
+/* tracking-tighter is -0.05em in Tailwind — slightly negative keeps
+   Hebrew h1 letterforms dense without over-spacing like the default. */
+[dir="rtl"] .tracking-tighter {
+  letter-spacing: -0.01em;
+}
+
+/* Eyebrow / label caps: wide tracking looks broken in Hebrew script */
+[dir="rtl"] .tracking-\[0\.28em\] {
+  letter-spacing: 0.08em;
+}
+[dir="rtl"] .tracking-widest {
+  letter-spacing: 0.10em;
+}
+[dir="rtl"] .tracking-wider {
+  letter-spacing: 0.06em;
+}
+[dir="rtl"] .tracking-\[0\.2em\] {
+  letter-spacing: 0.06em;
+}
+
+/* tracking-tight (-0.025em) — keep at 0 for h2/h3: no artificial spacing,
+   no compression. Neutral baseline that matches Hebrew letterform rhythm. */
+[dir="rtl"] .tracking-tight {
+  letter-spacing: 0;
+}
+
+/* leading-none (line-height: 1) used on h2 display elements */
+[dir="rtl"] .leading-none {
+  line-height: 1.2;
+}
+
+/* leading-tight (1.25) used on h3 card titles in UniqueValue, Solution, etc. */
+[dir="rtl"] .leading-tight {
+  line-height: 1.4;
+}
+
+/* Outline text: explicitly lock stroke width for Hebrew so it matches EN.
+   Hebrew letterforms can appear visually thinner — same px values = same weight. */
+[dir="rtl"] .text-outline-navy {
+  -webkit-text-stroke: 2px #031760;
+}
+@media (min-width: 1024px) {
+  [dir="rtl"] .text-outline-navy {
+    -webkit-text-stroke-width: 3px;
+  }
+}
+
+/* Body text: Hebrew reads naturally at 0 - extra tracking feels artificial */
+[dir="rtl"] .font-body {
+  letter-spacing: 0;
+}
+
+/* Body copy: give Hebrew lines a little extra breathing room */
+[dir="rtl"] p.font-body,
+[dir="rtl"] span.font-body,
+[dir="rtl"] li .font-body {
+  line-height: 1.75;
 }

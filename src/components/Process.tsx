@@ -4,44 +4,20 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const STEPS = [
-  {
-    num: "01",
-    title: "Register",
-    body: "Create your profile: Sign up as a Producer or Vendor and join the professional network in minutes.",
-  },
-  {
-    num: "02",
-    title: "Set Up",
-    body: "Build your base: Set up your personalized event dashboard or upload your business portfolio to start showcasing your work.",
-  },
-  {
-    num: "03",
-    title: "Connect",
-    body: "Find exactly what you need: browse a verified network of vendors. Choose the best professionals tailored specifically to your event\'s needs, budget, and style.",
-  },
-  {
-    num: "04",
-    title: "LAUNCH",
-    body: "Success for everyone: The event comes to life. Producers enjoy a fully managed, professional production, while Vendors get hired and paid securely. Everything is documented and seamless from start to finish.",
-  },
-] as const;
+const STEP_NUMS = ["01", "02", "03", "04"] as const;
 
-// Timeline positions at which each connector COMPLETES its fill
-// (and the next circle activates immediately after)
 const CONNECTOR_END_POS = [0.28, 0.58, 0.88] as const;
 
-// Active circle style (sky blue)
 const CIRCLE_ACTIVE = {
   borderColor: "#0EA5E9",
   backgroundColor: "rgba(14,165,233,0.08)",
   boxShadow: "0 0 0 6px rgba(14,165,233,0.10), 0 0 20px rgba(14,165,233,0.35)",
 } as const;
 
-// Inactive circle style (faint navy)
 const CIRCLE_IDLE = {
   borderColor: "rgba(3,23,96,0.20)",
   backgroundColor: "transparent",
@@ -49,32 +25,32 @@ const CIRCLE_IDLE = {
 } as const;
 
 export default function Process() {
+  const { t, dir } = useLanguage();
+  const p = t.process;
+
   const sectionRef    = useRef<HTMLElement>(null);
   const headingRef    = useRef<HTMLDivElement>(null);
-  // 4 circles, 4 number spans, 4 text blocks
   const circleRefs    = useRef<(HTMLDivElement  | null)[]>([]);
   const numRefs       = useRef<(HTMLSpanElement | null)[]>([]);
   const textRefs      = useRef<(HTMLDivElement  | null)[]>([]);
-  // 3 connector progress fills (between circles 1-2, 2-3, 3-4)
   const connectorRefs = useRef<(HTMLDivElement  | null)[]>([]);
 
+  // Connector fill origin is direction-aware: RTL grows from right, LTR from left
   useGSAP(() => {
     const isMobile = ScrollTrigger.isTouch === 1;
+    const connectorOrigin = dir === "rtl" ? "right center" : "left center";
 
-    // ── Heading ──────────────────────────────────────────────────────────────
     gsap.from(headingRef.current, {
       y: 30, opacity: 0, duration: 0.8, ease: "power3.out",
       scrollTrigger: { trigger: headingRef.current, start: "top 88%", toggleActions: "play none none none" },
     });
 
     if (isMobile) {
-      // ── Mobile: show all steps fully active, animate in as one block ───────
-      gsap.set(circleRefs.current,  CIRCLE_ACTIVE);
-      gsap.set(numRefs.current,     { scale: 1.15, color: "#031760" });
-      gsap.set(textRefs.current,    { y: 0, opacity: 1 });
-      gsap.set(connectorRefs.current, { scaleX: 1 });
+      gsap.set(circleRefs.current,    CIRCLE_ACTIVE);
+      gsap.set(numRefs.current,       { scale: 1.15, color: "#031760" });
+      gsap.set(textRefs.current,      { y: 0, opacity: 1 });
+      gsap.set(connectorRefs.current, { transformOrigin: connectorOrigin, scaleX: 1 });
     } else {
-      // ── Desktop: scrubbed timeline ─────────────────────────────────────────
       gsap.set(circleRefs.current[0], CIRCLE_ACTIVE);
       gsap.set(numRefs.current[0],    { scale: 1.15, color: "#031760" });
       gsap.set(textRefs.current[0],   { y: 0, opacity: 1 });
@@ -82,7 +58,7 @@ export default function Process() {
       gsap.set(circleRefs.current.slice(1), CIRCLE_IDLE);
       gsap.set(numRefs.current.slice(1),    { scale: 1.0, color: "rgba(3,23,96,0.45)" });
       gsap.set(textRefs.current.slice(1),   { y: 20, opacity: 0 });
-      gsap.set(connectorRefs.current,       { scaleX: 0 });
+      gsap.set(connectorRefs.current,       { transformOrigin: connectorOrigin, scaleX: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: "top 55%", end: "+=700", scrub: 1 },
@@ -91,14 +67,13 @@ export default function Process() {
       CONNECTOR_END_POS.forEach((endPos, ci) => {
         const startPos   = ci === 0 ? 0.02 : CONNECTOR_END_POS[ci - 1] + 0.02;
         const nextCircle = ci + 1;
-
         tl.to(connectorRefs.current[ci],      { scaleX: 1, ease: "none", duration: endPos - startPos }, startPos);
         tl.to(circleRefs.current[nextCircle], { ...CIRCLE_ACTIVE, duration: 0.06, ease: "none" }, endPos);
         tl.to(numRefs.current[nextCircle],    { scale: 1.15, color: "#031760", duration: 0.06, ease: "none" }, endPos);
         tl.to(textRefs.current[nextCircle],   { y: 0, opacity: 1, duration: 0.15, ease: "power2.out" }, endPos);
       });
     }
-  }, { scope: sectionRef });
+  }, { scope: sectionRef, dependencies: [dir], revertOnUpdate: true });
 
   return (
     <section
@@ -113,11 +88,8 @@ export default function Process() {
         <div ref={headingRef} className="flex flex-col items-center text-center gap-4">
           <div className="flex items-center gap-3">
             <span className="block w-8 h-px" style={{ backgroundColor: "#33AFFF" }} />
-            <span
-              className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
-              style={{ color: "#33AFFF" }}
-            >
-              The Process
+            <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]" style={{ color: "#33AFFF" }}>
+              {p.eyebrow}
             </span>
             <span className="block w-8 h-px" style={{ backgroundColor: "#33AFFF" }} />
           </div>
@@ -125,22 +97,19 @@ export default function Process() {
             className="font-display font-bold uppercase tracking-tight leading-[1.0] text-[2.4rem] md:text-[3.4rem] lg:text-[4.2rem]"
             style={{ color: "#031760" }}
           >
-            Simple.{" "}
-            <span style={{ color: "#33AFFF" }}>Fast.</span>{" "}
-            Smart.
+            {p.h2.part1}{" "}
+            <span style={{ color: "#33AFFF" }}>{p.h2.accent}</span>{" "}
+            {p.h2.part2}
           </h2>
         </div>
 
         {/* ── Timeline ── */}
         <div className="w-full flex flex-col gap-10">
 
-          {/* Row 1: circles connected by the animated line */}
-          {/* Flex: each circle is flex-shrink-0; connectors are flex-1 */}
+          {/* Row 1: circles + connectors (desktop only) */}
           <div className="hidden md:flex items-center w-full">
-            {STEPS.map(({ num }, i) => (
-              <div key={num} className="contents">
-
-                {/* Circle */}
+            {p.steps.map((_, i) => (
+              <div key={STEP_NUMS[i]} className="contents">
                 <div
                   ref={(el) => { circleRefs.current[i] = el; }}
                   className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center relative z-10"
@@ -151,72 +120,57 @@ export default function Process() {
                     className="font-display font-bold text-[0.85rem] leading-none tracking-wider"
                     style={{ transformOrigin: "center" }}
                   >
-                    {num}
+                    {STEP_NUMS[i]}
                   </span>
                 </div>
-
-                {/* Connector (only between circles, not after the last) */}
-                {i < STEPS.length - 1 && (
-                  <div
-                    className="flex-1 relative h-[2px]"
-                    style={{ backgroundColor: "rgba(3,23,96,0.10)" }}
-                  >
-                    {/* Sky blue fill - scaleX animated from 0 → 1 */}
+                {i < p.steps.length - 1 && (
+                  <div className="flex-1 relative h-[2px]" style={{ backgroundColor: "rgba(3,23,96,0.10)" }}>
                     <div
                       ref={(el) => { connectorRefs.current[i] = el; }}
-                      className="absolute inset-0 origin-left"
-                      style={{
-                        backgroundColor: "#0EA5E9",
-                        boxShadow: "0 0 6px rgba(14,165,233,0.55)",
-                      }}
+                      className="absolute inset-0 origin-right"
+                      style={{ backgroundColor: "#0EA5E9", boxShadow: "0 0 6px rgba(14,165,233,0.55)" }}
                     />
                   </div>
                 )}
-
               </div>
             ))}
           </div>
 
-          {/* Row 2: step text labels - aligned below each circle */}
-          {/* On desktop: 4-column grid matches circle positions */}
-          {/* On mobile: vertical stack with circles inline */}
+          {/* Row 2: step text labels */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
-            {STEPS.map(({ num, title, body }, i) => (
-              <div key={num} className="flex flex-col gap-0">
+            {p.steps.map((step, i) => (
+              <div key={STEP_NUMS[i]} className="flex flex-col gap-0">
 
-                {/* Mobile-only: circle above text (hidden on md+) */}
+                {/* Mobile-only circle */}
                 <div
                   className="md:hidden flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center mb-5"
                   style={{ border: "2px solid #0EA5E9", boxShadow: "0 0 16px rgba(14,165,233,0.3)" }}
                 >
                   <span className="font-display font-bold text-[0.85rem]" style={{ color: "#031760" }}>
-                    {num}
+                    {STEP_NUMS[i]}
                   </span>
                 </div>
 
                 {/* Step text */}
                 <div
                   ref={(el) => { textRefs.current[i] = el; }}
-                  className="flex flex-col gap-2 text-center md:text-left"
+                  className="flex flex-col gap-2 text-center md:text-start"
                 >
                   <h3
                     className="font-display font-bold uppercase tracking-tight text-[1.2rem] leading-tight"
                     style={{ color: "#031760" }}
                   >
-                    {title}
+                    {step.title}
                   </h3>
-                  <p
-                    className="font-body text-[0.88rem] leading-relaxed"
-                    style={{ color: "rgba(3,23,96,0.55)" }}
-                  >
-                    {body.includes(":") ? (
+                  <p className="font-body text-[0.88rem] leading-relaxed" style={{ color: "rgba(3,23,96,0.55)" }}>
+                    {step.body.includes(":") ? (
                       <>
                         <strong style={{ color: "#031760", fontWeight: 700 }}>
-                          {body.split(":")[0]}:
+                          {step.body.split(":")[0]}:
                         </strong>
-                        {body.split(":").slice(1).join(":")}
+                        {step.body.split(":").slice(1).join(":")}
                       </>
-                    ) : body}
+                    ) : step.body}
                   </p>
                 </div>
 

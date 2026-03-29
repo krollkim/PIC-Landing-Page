@@ -1,5 +1,5 @@
 /**
- * Tailwind CSS v4 — Design Tokens
+ * Tailwind CSS v4 - Design Tokens
  *
  * In Tailwind v4, custom tokens are declared in CSS via @theme (see globals.css).
  * This file documents the token architecture for the Lead Architect's reference.

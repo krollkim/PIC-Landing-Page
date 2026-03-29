@@ -1,8 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
   return (
     <footer
       className="w-full px-6 py-10"
@@ -10,16 +14,16 @@ export default function Footer() {
     >
       <div className="w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
 
-        {/* Left: copyright + studio credit */}
+        {/* Copyright + studio credit */}
         <div className="flex flex-col items-center sm:items-start gap-1.5">
           <p
             className="font-body text-[0.78rem]"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
-            PIC · Parties &amp; Events Platform · Copyright 2026 ©
+            {f.copyright}
           </p>
           <p className="font-body text-[0.72rem]" style={{ color: "rgba(255,255,255,0.35)" }}>
-            Crafted with ❤️ by{" "}
+            {f.craftedBy}{" "}
             <a
               href="https://smileysolution.com/"
               target="_blank"
@@ -34,10 +38,10 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Right: PIC logo */}
+        {/* PIC logo - brand mark, intentionally not translated */}
         <Image
           src="/images/pic-logo.jpeg"
-          alt="PIC Platform logo"
+          alt={f.logoAlt}
           width={80}
           height={36}
           className="h-9 w-auto select-none opacity-80 hover:opacity-100 transition-opacity duration-200"
