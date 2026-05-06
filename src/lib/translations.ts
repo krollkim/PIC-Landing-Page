@@ -236,10 +236,10 @@ const en = {
   hero: {
     sectionLabel: "Hero",
     logoAlt: "PIC - Parties & Events Platform logo",
-    eyebrow: "Where Events Come to Life",
+    eyebrow: "Plan, book, and manage your events - all in one place.",
     h1: ["Create", "Events", "Easily."] as [string, string, string],
-    body: "The all-in-one platform where producers, vendors, and audiences connect. Plan, book, and execute - flawlessly.",
-    ctaPrimary: "Get Early Access",
+    body: "Find and book vendors, publish your event, and start selling tickets - in just a few clicks.",
+    ctaPrimary: "Contact Us",
     ctaSecondary: "Explore Platform",
   },
 
@@ -263,42 +263,42 @@ const en = {
   },
 
   solution: {
-    eyebrow: "Built for Everyone",
+    eyebrow: "Who It's For",
     h2: { part1: "One Platform.", accent: "All Sides." },
-    body: "From intimate gatherings to stadium-scale productions - the place where producers, vendors, and attendees converge.",
+    body: "FOR EVERY TYPE OF EVENT - Where producers, vendors, and attendees come together.",
     columns: [
       {
         role: "Producers",
         quote:
-          "I used to lose days to calls and chaos. Now everything runs from one place - and I actually enjoy the process.",
+          "\"I used to waste days on endless calls and WhatsApp chaos. Now, everything is in one place.\"",
         bullets: [
-          "Idea to Event: From concept to live in minutes, not days.",
-          "Verified Network: Instant access to pre-vetted vendors you can actually trust.",
-          "Full Visibility: Tasks, timeline, and budget - all on one dashboard.",
-          "Zero Noise: All communications organized. Nothing slips through.",
-          "Seamless Payments: Pay vendors securely, on your terms.",
+          "Plan in Minutes: Go from an idea to a live event with a few clicks.",
+          "Verified vendors: Instant access to a network of vendors you can trust.",
+          "Total Control: Track your tasks, schedule, and budget on one dashboard.",
+          "Stop the Mess: No more lost messages, all communication is organized.",
+          "Easy Payments: Manage and pay vendors securely.",
         ],
       },
       {
         role: "Vendors",
         quote:
-          "I'm world-class at what I do. With PIC, the right clients find me - not the other way around.",
+          "\"I'm a pro at what I do, but if clients can't find me, it doesn't matter. With PIC, my next job is one click away.\"",
         bullets: [
-          "Premium Profile: A professional showcase that does the selling for you.",
-          "Qualified Leads: Get matched with clients who fit your niche and rate.",
-          "Instant Booking: Manage your calendar and get hired in real time.",
-          "Reputation Engine: Verified reviews that build lasting credibility.",
-          "Direct Access: Work with clients directly - no middlemen, no margin cuts.",
+          "Strong Business Profile: A professional gallery to show off your best work.",
+          "Smart Leads: Get matched with clients who fit your style and budget.",
+          "Instant Booking: Manage your calendar and get hired on the spot.",
+          "Build Your Name: Verified reviews and ratings that build real trust.",
+          "Direct Access: Chat directly with clients without the 'middleman.'",
         ],
       },
       {
         role: "Attendees",
-        quote: "Never miss the events that move you.",
+        quote: "\"Never miss out on the events that matter.\"",
         bullets: [
-          "Discover events curated to your taste",
-          "Secure, frictionless ticketing",
-          "Stay ahead of what's coming",
-          "Exclusive drops and first-access passes",
+          "Discover events that match your interests",
+          "Buy tickets quickly and securely",
+          "Stay updated on upcoming events",
+          "Get access to exclusive drops and releases",
         ],
       },
     ],
@@ -311,15 +311,15 @@ const en = {
     features: [
       {
         title: "Smart Sourcing",
-        body: "Stop the manual grind. Our matching engine connects producers with top verified vendors - filtered by budget, style, and availability. Instantly.",
+        body: "Stop searching for hours. We instantly match producers with the best verified vendors based on budget and style.",
       },
       {
-        title: "Total Control",
-        body: "One dashboard to run them all. Task management, team messaging, secure payments - every moving part, in one place.",
+        title: "Total Management",
+        body: "Manage everything in one place. From tasks and team chats to secure payments - all in one dashboard.",
       },
       {
-        title: "Effortless Ticketing",
-        body: "Launch a full ticketing operation in seconds. Set tiers, track sales live, and give guests a checkout experience worth remembering.",
+        title: "Easy Ticketing",
+        body: "Sell more, stress less. Create ticket tiers in seconds, track sales in real time, and give guests a smooth checkout.",
       },
     ],
   },
@@ -330,19 +330,19 @@ const en = {
     steps: [
       {
         title: "Register",
-        body: "Your profile, your way: Sign up as a Producer or Vendor and join a professional network built for the industry - in minutes.",
+        body: "Create your profile: Sign up as a Producer or Vendor and join the professional network in minutes.",
       },
       {
         title: "Set Up",
-        body: "Build your foundation: Configure your event dashboard or upload your portfolio. Start showcasing your work immediately.",
+        body: "Build your base: Set up your personalized event dashboard or upload your business portfolio to start showcasing your work.",
       },
       {
         title: "Connect",
-        body: "Find your perfect match: Browse a verified network of top-tier vendors - filtered precisely to your event's scope, budget, and aesthetic.",
+        body: "Find exactly what you need: browse a verified network of vendors. Choose the best professionals tailored specifically to your event's needs, budget, and style.",
       },
       {
-        title: "Launch",
-        body: "Excellence, delivered: The event goes live. Producers run a fully managed production. Vendors get booked and paid securely. Every detail documented. Every step seamless.",
+        title: "LAUNCH",
+        body: "Success for everyone: The event comes to life. Producers enjoy a fully managed, professional production, while Vendors get hired and paid securely. Everything is documented and seamless from start to finish.",
       },
     ],
   },
@@ -350,12 +350,12 @@ const en = {
   leadCapture: {
     eyebrow: "Early Access",
     h2: { part1: "Be the First", accent: "to Know." },
-    body: "The platform is live. Join the PIC community and be among the first to experience it.",
+    body: "The platform is live. Join the PIC community today and be among our first users.",
     roles: { producer: "Event Producer", vendor: "Service Provider" },
     submit: { idle: "Join the List", loading: "Sending…" },
     success: {
       heading: "You're on the list.",
-      body: "We'll be in touch when your access opens. Keep an eye on your inbox.",
+      body: "We'll reach out when early access opens. Watch your inbox.",
     },
     disclaimer: "No spam. No commitments. Just early access.",
     emailPlaceholder: "your@email.com",
