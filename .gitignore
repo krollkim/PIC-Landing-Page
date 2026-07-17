@@ -9,3 +9,16 @@ public/fonts/
 temp_auto_push.bat
 temp_interactive_push.bat
 config.bat
+
+# Local environment / secrets — never commit
+.env
+.env.local
+.env*.local
+
+# Playwright MCP artifacts (screenshots, console/page dumps)
+.playwright-mcp/
+pic-live-full.jpeg
+
+# Local reference material (design PDFs, screen captures) — kept on disk, not in git
+screencapture-*.pdf
+next-panic-*.log
