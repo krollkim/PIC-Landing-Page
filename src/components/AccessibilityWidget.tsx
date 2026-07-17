@@ -45,27 +45,27 @@ function ToggleRow({
       role="switch"
       aria-checked={active}
       onClick={onToggle}
-      className="flex items-center justify-between w-full px-4 py-3 rounded-xl font-body text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#031760]"
+      className="flex items-center justify-between w-full px-4 py-3 rounded-xl font-body text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#FF4D9B]"
       style={
         active
-          ? { backgroundColor: 'rgba(3,23,96,0.06)', border: '1px solid rgba(3,23,96,0.20)' }
+          ? { backgroundColor: 'rgba(255,11,112,0.08)', border: '1px solid rgba(255,11,112,0.25)' }
           : { border: '1px solid transparent' }
       }
-      onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#f9fafb'; }}
+      onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(255,255,255,0.04)'; }}
       onMouseLeave={(e) => { if (!active) (e.currentTarget as HTMLButtonElement).style.backgroundColor = ''; }}
     >
       {/* Icon + Label */}
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          style={{ color: active ? '#031760' : '#9ca3af' }}
+          style={{ color: active ? '#FF4D9B' : '#8C8CA3' }}
           className="transition-colors duration-200"
         >
           {icon}
         </span>
         <span
           className="transition-colors duration-200"
-          style={{ color: active ? '#031760' : '#6b7280' }}
+          style={{ color: active ? '#FFFFFF' : '#8C8CA3' }}
         >
           {label}
         </span>
@@ -76,7 +76,7 @@ function ToggleRow({
         dir="ltr"
         aria-hidden="true"
         className="relative flex-shrink-0 w-10 h-5 rounded-full transition-colors duration-300"
-        style={{ backgroundColor: active ? '#031760' : '#d1d5db' }}
+        style={{ backgroundColor: active ? '#FF0B70' : '#5A5A70' }}
       >
         <div
           className="absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-all duration-300"
@@ -164,12 +164,11 @@ export default function AccessibilityWidget() {
         aria-label={open ? w.closeMenu : w.openMenu}
         aria-expanded={open}
         aria-controls="a11y-panel"
-        className="fixed right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#33AFFF]"
+        className="fixed right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#FF4D9B] bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] md:bottom-24"
         style={{
-          bottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
-          backgroundColor: open ? '#021245' : '#031760',
-          border: '2px solid #33AFFF',
-          boxShadow: '0 4px 20px rgba(3,23,96,0.35)',
+          backgroundColor: open ? '#17001A' : '#1A0428',
+          border: '2px solid #FF4D9B',
+          boxShadow: '0 4px 20px rgba(255,11,112,0.35)',
           WebkitTransform: 'translateZ(0)',
           transform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
@@ -188,18 +187,17 @@ export default function AccessibilityWidget() {
           id="a11y-panel"
           role="region"
           aria-label={w.header}
-          className="fixed right-6 z-[9999] w-72 rounded-2xl overflow-hidden"
+          className="fixed right-6 z-[9999] w-72 rounded-2xl overflow-hidden bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] md:bottom-40"
           style={{
-            bottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))',
-            backgroundColor: '#ffffff',
-            border: '1px solid rgba(3,23,96,0.12)',
-            boxShadow: '0 8px 32px rgba(3,23,96,0.18)',
+            backgroundColor: '#17001A',
+            border: '1px solid rgba(255,255,255,0.12)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.55)',
             WebkitTransform: 'translateZ(0)',
             transform: 'translateZ(0)',
           }}
         >
           {/* Header */}
-          <div className="flex items-center gap-3 px-5 py-4" style={{ backgroundColor: '#031760' }}>
+          <div className="flex items-center gap-3 px-5 py-4" style={{ backgroundColor: '#070012' }}>
             <Accessibility size={16} strokeWidth={1.5} className="text-white/80 flex-shrink-0" aria-hidden="true" />
             <span className="font-body text-sm font-medium text-white tracking-wide">
               {w.header}
@@ -233,14 +231,14 @@ export default function AccessibilityWidget() {
             <a
               href="/accessibility"
               className="flex items-center justify-between w-full px-4 py-3 rounded-xl font-body text-sm transition-colors duration-200"
-              style={{ border: '1px solid rgba(3,23,96,0.12)', color: '#6b7280' }}
+              style={{ border: '1px solid rgba(255,255,255,0.12)', color: '#8C8CA3' }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#f9fafb';
-                (e.currentTarget as HTMLAnchorElement).style.color = '#031760';
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'rgba(255,255,255,0.04)';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#FFFFFF';
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLAnchorElement).style.backgroundColor = '';
-                (e.currentTarget as HTMLAnchorElement).style.color = '#6b7280';
+                (e.currentTarget as HTMLAnchorElement).style.color = '#8C8CA3';
               }}
             >
               <span>{w.statementLink}</span>

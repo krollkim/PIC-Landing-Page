@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Inter } from "next/font/google";
+import { Barlow_Condensed, Inter, Rubik } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -7,6 +7,16 @@ const barlow = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   variable: "--font-barlow",
+  display: "swap",
+});
+
+// Hebrew display font - Barlow Condensed has no Hebrew glyphs, so RTL headlines
+// otherwise fall back to Arial Bold (heavy strokes, cramped counters). Rubik is
+// a geometric Hebrew-native sans with open counters that matches the EN look.
+const rubik = Rubik({
+  subsets: ["hebrew", "latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-rubik",
   display: "swap",
 });
 
@@ -92,11 +102,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="he"
       dir="rtl"
-      className={`${barlow.variable} ${inter.variable}`}
+      className={`${barlow.variable} ${inter.variable} ${rubik.variable}`}
       suppressHydrationWarning
     >
       <head>
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#0A0A12" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

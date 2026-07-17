@@ -1,114 +1,76 @@
 "use client";
 
+import Image from "next/image";
+import { Globe, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
-  const { lang, t, toggle } = useLanguage();
+  const { lang, dir, t, toggle } = useLanguage();
+  const Chevron = dir === "rtl" ? ChevronLeft : ChevronRight;
 
   return (
     <nav
       aria-label="Main navigation"
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-[1320px] rounded-2xl"
+      style={{
+        background: "rgba(255,255,255,0.055)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        boxShadow: "0 10px 34px rgba(0,0,0,0.45), 0 0 24px rgba(255,46,134,0.12)",
+      }}
     >
-      <div className="w-full h-16 flex items-center px-8 sm:px-12 lg:px-24 justify-between">
+      <div className="w-full h-[68px] sm:h-[76px] flex items-center px-6 sm:px-10 justify-between">
 
-        {/* ── Start group: CTA + language toggle ── */}
-        <div className="flex items-center gap-3">
+        {/* ── Brand logo (RTL start) — links to the live platform ── */}
+        <a
+          href="https://pic-events.co.il/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="PIC - Parties & Events Platform"
+          className="flex items-center select-none opacity-100 hover:opacity-85 transition-opacity duration-200"
+        >
+          <Image
+            src="/images/header-logo.png"
+            alt="PIC"
+            width={64}
+            height={67}
+            priority
+            className="h-12 sm:h-14 w-auto select-none"
+            draggable={false}
+          />
+        </a>
+
+        {/* ── CTA + language switcher (RTL end) ── */}
+        <div className="flex items-center gap-4 sm:gap-5">
 
           {/* Contact Us / צרו קשר */}
           <a
             href="#lead-capture"
             aria-label={lang === "he" ? "קבלו גישה מוקדמת לפלטפורמת PIC" : "Get early access to PIC platform"}
-            className="font-body font-bold text-xs sm:text-sm uppercase tracking-widest text-white bg-navy hover:bg-navy-hover active:bg-navy-active transition-colors duration-150 rounded-md min-w-[120px] sm:min-w-[160px] h-[36px] sm:h-[40px] flex items-center justify-center"
+            className="font-body font-bold text-xs sm:text-sm uppercase tracking-widest text-white btn-gradient-pink rounded-[10px] inline-flex items-center justify-center gap-2 px-5 sm:px-6 h-[40px] sm:h-[44px]"
           >
             {t.nav.contactUs}
+            <Chevron className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
           </a>
 
-          {/* ── Language Toggle ── */}
-          <div
-            role="group"
+          {/* ── Language switcher: globe + country code (toggles he/en).
+               Borderless by default; the pill/border appears only on hover. ── */}
+          <button
+            type="button"
+            onClick={toggle}
             aria-label={t.nav.langSwitcherLabel}
-            className="flex items-center rounded-md overflow-hidden h-[36px] sm:h-[40px]"
-          style={{ border: "1px solid rgba(51,175,255,0.45)" }}
+            className="flex items-center gap-2 h-[40px] sm:h-[44px] px-3 sm:px-3.5 rounded-lg border border-transparent text-white/80 transition-colors duration-200 hover:text-white hover:bg-primary-400/55 hover:border-white/15"
           >
-            <LangButton
-              code="he"
-              label="עב"
-              active={lang === "he"}
-              onClick={toggle}
-              ariaLabel="עברית - החלף לעברית"
-            />
-
-            {/* Divider */}
-            <span
-              aria-hidden="true"
-              className="w-px self-stretch"
-              style={{ backgroundColor: "rgba(3,23,96,0.10)" }}
-            />
-
-            <LangButton
-              code="en"
-              label="EN"
-              active={lang === "en"}
-              onClick={toggle}
-              ariaLabel="English - Switch to English"
-            />
-          </div>
+            <Globe size={17} strokeWidth={1.8} aria-hidden="true" />
+            <span className="font-body text-[0.72rem] sm:text-[0.8rem] font-bold tracking-wider">
+              {lang === "he" ? "IL" : "US"}
+            </span>
+          </button>
 
         </div>
 
-        {/* ── Brand ── */}
-        <span
-          aria-label="PIC - Parties & Events Platform"
-          className="font-display font-bold text-navy uppercase tracking-[0.2em] text-sm sm:text-xl select-none whitespace-nowrap"
-        >
-          PIC EVENTS
-        </span>
-
       </div>
     </nav>
-  );
-}
-
-// ─── LangButton ───────────────────────────────────────────────────────────────
-
-interface LangButtonProps {
-  code: string;
-  label: string;
-  active: boolean;
-  onClick: () => void;
-  ariaLabel: string;
-}
-
-function LangButton({ label, active, onClick, ariaLabel }: LangButtonProps) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={ariaLabel}
-      aria-pressed={active}
-      className="font-body text-[0.7rem] sm:text-[0.75rem] font-bold tracking-wider px-2.5 sm:px-3 h-full transition-all duration-200"
-      style={
-        active
-          ? {
-              color: "#031760",
-              backgroundColor: "rgba(3,23,96,0.06)",
-            }
-          : {
-              color: "rgba(3,23,96,0.35)",
-              backgroundColor: "transparent",
-            }
-      }
-      onMouseEnter={(e) => {
-        if (active) return;
-        (e.currentTarget as HTMLButtonElement).style.color = "rgba(3,23,96,0.65)";
-      }}
-      onMouseLeave={(e) => {
-        if (active) return;
-        (e.currentTarget as HTMLButtonElement).style.color = "rgba(3,23,96,0.35)";
-      }}
-    >
-      {label}
-    </button>
   );
 }

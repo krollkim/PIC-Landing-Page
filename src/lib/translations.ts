@@ -19,7 +19,7 @@ const he = {
     eyebrow: "המקום שבו אירועים מתעוררים לחיים",
     h1: ["יוצרים", "אירועים", "בקלות."] as [string, string, string],
     body: "הפלטפורמה המקיפה ביותר לחיבור בין מפיקים, ספקים וקהל. לתכנן, להזמין ולבצע - ללא פשרות.",
-    ctaPrimary: "קבלו גישה מוקדמת",
+    ctaPrimary: "צרו קשר",
     ctaSecondary: "גלו את הפלטפורמה",
   },
 
@@ -128,18 +128,11 @@ const he = {
   },
 
   leadCapture: {
-    eyebrow: "גישה מוקדמת",
+    eyebrow: "הצטרפו אלינו",
     h2: { part1: "היו הראשונים", accent: "לדעת." },
-    body: "הפלטפורמה פועלת. הצטרפו לקהילת PIC והיו מהראשונים לחוות אותה.",
-    roles: { producer: "מפיק אירועים", vendor: "נותן שירות" },
-    submit: { idle: "הצטרפו לרשימה", loading: "שולח…" },
-    success: {
-      heading: "אתם ברשימה.",
-      body: "ניצור קשר כשהגישה המוקדמת תיפתח. עקבו אחרי תיבת הדואר שלכם.",
-    },
-    disclaimer: "ללא ספאם. ללא התחייבויות. רק גישה מוקדמת.",
-    emailPlaceholder: "your@email.com",
-    errorFallback: "משהו השתבש. נסו שוב.",
+    body: "הפלטפורמה פועלת. הצטרפו לקהילה והיו מהראשונים לחוות אותה.",
+    cta: "צרו קשר",
+    whatsappMessage: "היי, הגעתי מדף הנחיתה של PIC ואשמח לשמוע עוד",
   },
 
   transitionBar: {
@@ -348,18 +341,11 @@ const en = {
   },
 
   leadCapture: {
-    eyebrow: "Early Access",
+    eyebrow: "Join Us",
     h2: { part1: "Be the First", accent: "to Know." },
     body: "The platform is live. Join the PIC community today and be among our first users.",
-    roles: { producer: "Event Producer", vendor: "Service Provider" },
-    submit: { idle: "Join the List", loading: "Sending…" },
-    success: {
-      heading: "You're on the list.",
-      body: "We'll reach out when early access opens. Watch your inbox.",
-    },
-    disclaimer: "No spam. No commitments. Just early access.",
-    emailPlaceholder: "your@email.com",
-    errorFallback: "Something went wrong. Please try again.",
+    cta: "Contact Us",
+    whatsappMessage: "Hi, I came from the PIC landing page and would love to hear more",
   },
 
   transitionBar: {

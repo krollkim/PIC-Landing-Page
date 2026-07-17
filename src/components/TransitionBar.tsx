@@ -36,8 +36,8 @@ export default function TransitionBar() {
       aria-label={tb.eyebrow}
       id="Situation"
       style={{
-        backgroundColor: "#30a5ff",
-        borderTop: "1px solid rgba(3,23,96,0.10)",
+        background: "linear-gradient(90deg, #FF0B70 0%, #730033 100%)",
+        borderTop: "1px solid rgba(255,255,255,0.10)",
       }}
       className="w-full py-[90px] px-6"
     >
@@ -45,14 +45,14 @@ export default function TransitionBar() {
 
         {/* Eyebrow label */}
         <div ref={labelRef} className="flex items-center gap-3">
-          <span className="block w-8 h-px" style={{ backgroundColor: "#031760" }} />
+          <span className="block w-8 h-px" style={{ backgroundColor: "#FFFFFF" }} />
           <span
-            className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
-            style={{ color: "#031760" }}
+            className="font-body text-[0.78rem] font-bold uppercase tracking-[0.28em]"
+            style={{ color: "#FFFFFF" }}
           >
             {tb.eyebrow}
           </span>
-          <span className="block w-8 h-px" style={{ backgroundColor: "#031760" }} />
+          <span className="block w-8 h-px" style={{ backgroundColor: "#FFFFFF" }} />
         </div>
 
         {/* Editorial statement */}
@@ -60,12 +60,12 @@ export default function TransitionBar() {
           ref={statementRef}
           className="font-display font-bold uppercase tracking-tight leading-[1.05] text-[1.6rem] md:text-[2.2rem] lg:text-[2.8rem]"
         >
-          {/* Story text - white with subtle shadow for legibility on sky-blue bg */}
+          {/* Story text - white with subtle shadow for legibility on pink gradient bg */}
           <span style={{ color: "#FFFFFF", textShadow: "0 1px 2px rgba(0,0,0,0.10)" }}>
             {tb.statementPart1}{" "}
           </span>
-          {/* Punchline - deep navy, heavy weight for maximum contrast */}
-          <span style={{ color: "#031760", fontWeight: 900 }}>
+          {/* Punchline - near-black purple, heavy weight for maximum contrast */}
+          <span style={{ color: "#070012", fontWeight: 900 }}>
             {tb.punchline}
           </span>
         </p>

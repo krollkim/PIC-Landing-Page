@@ -1,10 +1,26 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy:        #031760;
-  --color-navy-hover:  #052080;
-  --color-navy-active: #021245;
-  --color-slate-bg:    #F9FAFB;
+  /* pic-events dark palette — Primary purples */
+  --color-primary-300: #52117E;
+  --color-primary-400: #3E0D5F;
+  --color-primary-500: #2A0842;
+  --color-primary-600: #1A0428;
+  --color-primary-700: #17001A;
+  --color-primary-800: #070012;
+
+  /* Accent pinks */
+  --color-accent-400: #FF4D9B;
+  --color-accent-500: #FF0B70;
+  --color-accent-600: #D9005C;
+  --color-accent-700: #A60047;
+  --color-accent-800: #730033;
+
+  /* Text & BG */
+  --color-bg-page:    #0A0A12;
+  --color-text-soft:  #FAF7FF;
+  --color-text-muted: #8C8CA3;
+  --color-text-dim:   #5A5A70;
 
   --font-display: var(--font-barlow), "Barlow Condensed", sans-serif;
   --font-body:    var(--font-inter),  "Inter", sans-serif;
@@ -15,7 +31,7 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #0A0A12;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,11 +41,41 @@ body {
 
 .text-outline-navy {
   color: transparent;
-  -webkit-text-stroke: 2px #031760;
+  -webkit-text-stroke: 2px #FF0B70;
 }
 
 @media (min-width: 1024px) {
   .text-outline-navy { -webkit-text-stroke-width: 3px; }
+}
+
+/* Primary CTA — matches the pic-events live `.btn-primary`: a radial gradient
+   with a neon pink glow, and a reversed-gradient layer that cross-fades in on
+   hover (the gradient appears to sweep side-to-side). Both gradient layers live
+   on ::before/::after at z-index:-1 inside an isolated stacking context, so the
+   label sits above them without needing a wrapper element. */
+.btn-gradient-pink {
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0 0 20px rgba(246, 15, 114, 0.50), 0 0 40px 8px rgba(246, 15, 114, 0.30);
+}
+.btn-gradient-pink::before,
+.btn-gradient-pink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+}
+.btn-gradient-pink::before {
+  background: radial-gradient(309.19% 209.03% at 156.25% -46.41%, #1d0142, #d9005c);
+}
+.btn-gradient-pink::after {
+  background: radial-gradient(309.19% 209.03% at 156.25% -46.41%, #d9005c, #1d0142);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.btn-gradient-pink:hover::after {
+  opacity: 1;
 }
 
 /* ─── Accessibility Modes ─────────────────────────────────────────────────────
@@ -38,8 +84,8 @@ body {
    HIGH CONTRAST: does NOT use filter - filter clips GSAP-animated opacity values
    (e.g. the ghost numbers in Solution start at opacity:0.10 via gsap.set, and
    contrast(1.6) makes them vanish). Since the site is already very high-contrast
-   (navy #031760 on white), the mode instead enhances readability via underlines,
-   bolder text, and visible outlines on interactive elements.
+   (white on near-black #0A0A12), the mode instead enhances readability via
+   underlines, bolder text, and visible outlines on interactive elements.
 
    GRAYSCALE: filter scoped to main+footer only, never body/html, so that
    fixed-position elements (Navbar, AccessibilityWidget) stay unaffected and
@@ -65,7 +111,7 @@ html.a11y-high-contrast main a {
 
 html.a11y-high-contrast main button:focus-visible,
 html.a11y-high-contrast main a:focus-visible {
-  outline: 3px solid #031760 !important;
+  outline: 3px solid #FF4D9B !important;
 }
 
 html.a11y-high-contrast main p,
@@ -99,16 +145,27 @@ html.a11y-high-contrast.a11y-grayscale footer {
    Hebrew with that much spacing looks like Morse code - reduced to 0.08em.
    ─────────────────────────────────────────────────────────────────────────── */
 
-/* Display font: relax the aggressive tracking and open up line-height */
+/* Display font: Hebrew glyphs come from Rubik (Barlow Condensed has none - the
+   browser would fall back to Arial Bold: heavy strokes, cramped counters).
+   Also relax the aggressive Latin tracking and open up line-height. */
 [dir="rtl"] .font-display {
+  font-family: var(--font-rubik), "Rubik", var(--font-barlow), sans-serif;
   letter-spacing: -0.01em; /* EN baseline: tracking-tighter = -0.05em            */
   line-height:    1.08;    /* EN baseline: leading-[0.88] - too tight for Hebrew  */
 }
 
 /* Hero h1 3-line stack: lines should "kiss" at large sizes just like EN.
-   0.95 matches the compressed editorial density of leading-[0.88] visually. */
-[dir="rtl"] h1 span {
-  line-height: 0.95;
+   Rubik's Hebrew ink is shorter than Latin caps, so the line-height must sit
+   below EN's leading-[0.88] to read equally dense. Weight drops to 600 and
+   tracking opens slightly - Rubik 700 at display sizes reads heavier than
+   Barlow Condensed 700, and the extra tracking keeps counters airy.
+   NOTE: selector must include .font-display — the generic
+   `[dir="rtl"] .font-display { line-height: 1.08 }` rule above has higher
+   specificity than `[dir="rtl"] h1 span` and silently wins otherwise. */
+[dir="rtl"] h1 span.font-display {
+  line-height: 0.85;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 /* tracking-tighter is -0.05em in Tailwind — slightly negative keeps
@@ -150,7 +207,7 @@ html.a11y-high-contrast.a11y-grayscale footer {
 /* Outline text: explicitly lock stroke width for Hebrew so it matches EN.
    Hebrew letterforms can appear visually thinner — same px values = same weight. */
 [dir="rtl"] .text-outline-navy {
-  -webkit-text-stroke: 2px #031760;
+  -webkit-text-stroke: 2px #FF0B70;
 }
 @media (min-width: 1024px) {
   [dir="rtl"] .text-outline-navy {

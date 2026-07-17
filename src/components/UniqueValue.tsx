@@ -12,9 +12,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 // Icons are UI concerns - kept here, not in translations
 const FEATURE_ICONS: LucideIcon[] = [Network, BookImage, BarChart3];
 
-const FILTER_IDLE  = "drop-shadow(0 0 24px rgba(51,175,255,0.22))";
-const FILTER_PEAK  = "drop-shadow(0 0 52px rgba(51,175,255,0.50))";
-const FILTER_BURST = "drop-shadow(0 0 80px rgba(51,175,255,0.90))";
+const FILTER_IDLE  = "drop-shadow(0 0 24px rgba(255,11,112,0.22))";
+const FILTER_PEAK  = "drop-shadow(0 0 52px rgba(255,11,112,0.50))";
+const FILTER_BURST = "drop-shadow(0 0 80px rgba(255,11,112,0.90))";
 
 export default function UniqueValue() {
   const { t, dir } = useLanguage();
@@ -92,7 +92,7 @@ export default function UniqueValue() {
       id="unique-value"
       aria-label="Our Unique Value"
       className="w-full py-28 md:py-36 px-6 overflow-hidden"
-      style={{ backgroundColor: "#031760" }}
+      style={{ backgroundColor: "#1A0428" }}
     >
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
 
@@ -101,15 +101,15 @@ export default function UniqueValue() {
 
           <div ref={headingRef} className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <span className="block w-8 h-px" style={{ backgroundColor: "#33AFFF" }} />
-              <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]" style={{ color: "#33AFFF" }}>
+              <span className="block w-8 h-px" style={{ backgroundColor: "#FF0B70" }} />
+              <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]" style={{ color: "#FF4D9B" }}>
                 {uv.eyebrow}
               </span>
-              <span className="block w-8 h-px" style={{ backgroundColor: "#33AFFF" }} />
+              <span className="block w-8 h-px" style={{ backgroundColor: "#FF0B70" }} />
             </div>
             <h2 className="font-display font-bold uppercase tracking-tight leading-[1.0] text-[2.4rem] md:text-[3.2rem] lg:text-[3.8rem] text-white">
               {uv.h2.part1}{" "}
-              <span style={{ color: "#33AFFF" }}>{uv.h2.accent}</span>
+              <span style={{ color: "#FF4D9B" }}>{uv.h2.accent}</span>
             </h2>
           </div>
 
@@ -125,9 +125,9 @@ export default function UniqueValue() {
                 >
                   <div
                     className="flex-shrink-0 w-11 h-11 rounded-lg flex items-center justify-center mt-0.5"
-                    style={{ backgroundColor: "rgba(51,175,255,0.12)", border: "1px solid rgba(51,175,255,0.20)" }}
+                    style={{ backgroundColor: "rgba(255,11,112,0.12)", border: "1px solid rgba(255,11,112,0.20)" }}
                   >
-                    <Icon size={20} style={{ color: "#33AFFF" }} strokeWidth={1.8} />
+                    <Icon size={20} style={{ color: "#FF4D9B" }} strokeWidth={1.8} />
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <h3 className="font-display font-bold uppercase tracking-tight text-[1.1rem] leading-tight text-white">
@@ -150,7 +150,7 @@ export default function UniqueValue() {
             <div ref={glowRef} className="flex flex-col items-center select-none">
               <span
                 className="font-display font-bold uppercase leading-[0.85] text-[7rem] md:text-[9rem] lg:text-[11rem]"
-                style={{ color: "transparent", WebkitTextStroke: "2px rgba(51,175,255,0.70)", letterSpacing: "-0.04em" }}
+                style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,11,112,0.70)", letterSpacing: "-0.04em" }}
               >
                 3
               </span>
@@ -162,13 +162,13 @@ export default function UniqueValue() {
               </span>
               <span
                 className="font-display font-bold uppercase leading-[0.85] text-[7rem] md:text-[9rem] lg:text-[11rem]"
-                style={{ color: "transparent", WebkitTextStroke: "2px rgba(51,175,255,0.70)", letterSpacing: "-0.04em" }}
+                style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,11,112,0.70)", letterSpacing: "-0.04em" }}
               >
                 1
               </span>
               <p
                 className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.3em] mt-6 text-center"
-                style={{ color: "rgba(51,175,255,0.6)" }}
+                style={{ color: "rgba(255,77,155,0.6)" }}
               >
                 {uv.tagline}
               </p>

@@ -75,7 +75,7 @@ export default function Solution() {
     quickY.current[i]?.(-20);
     quickIconScale.current[i]?.(1.25);
     quickNumOpacity.current[i]?.(0.45);
-    if (hoverRefs.current[i]) hoverRefs.current[i]!.style.boxShadow = "0 25px 60px rgba(3,23,96,0.16)";
+    if (hoverRefs.current[i]) hoverRefs.current[i]!.style.boxShadow = "0 25px 60px rgba(255,11,112,0.16)";
   };
 
   const handleLeave = (i: number) => {
@@ -90,27 +90,27 @@ export default function Solution() {
       ref={sectionRef}
       id="solution"
       aria-label="The Platform"
-      className="w-full bg-white py-28 md:py-36 px-6"
+      className="w-full bg-bg-page py-28 md:py-36 px-6"
     >
       <div className="w-full max-w-6xl mx-auto flex flex-col items-center gap-20">
 
         {/* ── Heading ── */}
         <div ref={headingRef} className="flex flex-col items-center text-center gap-4">
           <div className="flex items-center gap-3">
-            <span className="block w-8 h-px" style={{ backgroundColor: "#33AFFF" }} />
-            <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]" style={{ color: "#33AFFF" }}>
+            <span className="block w-8 h-px" style={{ backgroundColor: "#FF0B70" }} />
+            <span className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.28em]" style={{ color: "#FF4D9B" }}>
               {s.eyebrow}
             </span>
-            <span className="block w-8 h-px" style={{ backgroundColor: "#33AFFF" }} />
+            <span className="block w-8 h-px" style={{ backgroundColor: "#FF0B70" }} />
           </div>
           <h2
             className="font-display font-bold uppercase tracking-tight leading-none text-[2.2rem] md:text-[3.2rem] lg:text-[4rem]"
-            style={{ color: "#031760" }}
+            style={{ color: "#FFFFFF" }}
           >
             {s.h2.part1}{" "}
-            <span style={{ color: "#33AFFF" }}>{s.h2.accent}</span>
+            <span style={{ color: "#FF4D9B" }}>{s.h2.accent}</span>
           </h2>
-          <p className="font-body text-gray-500 text-lg leading-relaxed" style={{ maxWidth: "560px" }}>
+          <p className="font-body text-text-muted text-lg leading-relaxed" style={{ maxWidth: "560px" }}>
             {s.body}
           </p>
         </div>
@@ -130,7 +130,8 @@ export default function Solution() {
                   ref={(el) => { hoverRefs.current[i] = el; }}
                   className="flex flex-col gap-7 rounded-xl px-8 py-10 h-full"
                   style={{
-                    border: "1px solid rgba(3,23,96,0.08)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    backgroundColor: "#17001A",
                     willChange: "transform",
                     cursor: "default",
                     transition: "box-shadow 0.35s ease",
@@ -142,7 +143,7 @@ export default function Solution() {
                   <span
                     ref={(el) => { numRefs.current[i] = el; }}
                     className="font-display font-bold text-[4rem] leading-none select-none"
-                    style={{ color: "#031760" }}
+                    style={{ color: "#FFFFFF" }}
                   >
                     {COLUMN_NUMS[i]}
                   </span>
@@ -151,15 +152,15 @@ export default function Solution() {
                   <div
                     ref={(el) => { iconRefs.current[i] = el; }}
                     className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{ backgroundColor: "rgba(51,175,255,0.12)", transformOrigin: "center" }}
+                    style={{ backgroundColor: "rgba(255,11,112,0.12)", transformOrigin: "center" }}
                   >
-                    <Icon size={22} style={{ color: "#33AFFF" }} strokeWidth={2} />
+                    <Icon size={22} style={{ color: "#FF4D9B" }} strokeWidth={2} />
                   </div>
 
                   {/* Role */}
                   <h3
                     className="font-display font-bold uppercase tracking-tight leading-none text-[1.8rem] md:text-[2rem]"
-                    style={{ color: "#031760" }}
+                    style={{ color: "#FFFFFF" }}
                   >
                     {col.role}
                   </h3>
@@ -167,7 +168,7 @@ export default function Solution() {
                   {/* Quote */}
                   <blockquote
                     className="font-body italic text-[0.95rem] leading-relaxed border-s-2 ps-4"
-                    style={{ color: "rgba(3,23,96,0.55)", borderColor: "#33AFFF" }}
+                    style={{ color: "rgba(250,247,255,0.55)", borderColor: "#FF0B70" }}
                   >
                     {col.quote}
                   </blockquote>
@@ -176,8 +177,8 @@ export default function Solution() {
                   <ul className="flex flex-col gap-2">
                     {col.bullets.map((item) => (
                       <li key={item} className="flex items-start gap-2.5">
-                        <span className="mt-[6px] shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#33AFFF" }} />
-                        <span className="font-body text-gray-500 text-[0.9rem] leading-snug">{item}</span>
+                        <span className="mt-[6px] shrink-0 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#FF0B70" }} />
+                        <span className="font-body text-text-muted text-[0.9rem] leading-snug">{item}</span>
                       </li>
                     ))}
                   </ul>
