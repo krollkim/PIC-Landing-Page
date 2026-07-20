@@ -116,7 +116,9 @@ export default function Solution() {
         </div>
 
         {/* ── Three-column grid ── */}
-        <div ref={gridRef} className="w-full grid grid-cols-1 md:grid-cols-3 gap-0">
+        {/* gap-y only on mobile: stacked cards need vertical separation or they
+            read as one continuous pillar. Desktop keeps its px-based gutters. */}
+        <div ref={gridRef} className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-0 gap-y-6 md:gap-y-0">
           {s.columns.map((col, i) => {
             const Icon = COLUMN_ICONS[i];
             return (

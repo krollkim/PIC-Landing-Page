@@ -11,8 +11,6 @@ temp_interactive_push.bat
 config.bat
 
 # Local environment / secrets — never commit
-.env
-.env.local
 .env*.local
 
 # Playwright MCP artifacts (screenshots, console/page dumps)
