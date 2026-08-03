@@ -35,7 +35,7 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 const STORAGE_KEY = "pic-lang";
-const DEFAULT_LANG: Language = "he";
+const DEFAULT_LANG: Language = "en";
 
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
